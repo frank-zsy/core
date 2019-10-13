@@ -43,14 +43,14 @@ export class MgrBotApplication extends Application {
 
   constructor(options: any = {}) {
     super(options);
-    this.beforeStart(() => {
+    this.beforeStart(async () => {
       for (const plugin of this.pluginArray) {
-        (plugin as MgrBotPluginBase<any>).onStart();
+        await (plugin as MgrBotPluginBase<any>).onStart();
       }
     });
-    this.beforeClose(() => {
+    this.beforeClose(async () => {
       for (const plugin of this.pluginArray) {
-        (plugin as MgrBotPluginBase<any>).onClose();
+        await (plugin as MgrBotPluginBase<any>).onClose();
       }
     });
   }

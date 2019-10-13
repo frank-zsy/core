@@ -16,7 +16,6 @@
 
 import { Repo } from './basicTypes';
 import { MgrBotApplication } from './application';
-import Router = require('koa-router');
 
 interface PluginLogger {
   debug: (msg: any, ...args: any[]) => void;
@@ -78,33 +77,6 @@ export abstract class MgrBotPluginBase<TConfig> {
     const c = await this.app.configManager.getConfig(repo);
     if (!c || !c[this.name]) return null;
     return c[this.name] as TConfig;
-  }
-
-  /**
-   * router for derived class to listen to a path
-   * @param method request method
-   * @param path request path, will append this.name prefix
-   * @param middleware handler
-   */
-  protected router(method: 'get' | 'post' | 'put' | 'delete' | 'head',
-    path: string | RegExp, ...middleware: Array<Router.IMiddleware>) {
-    switch (method) {
-      case 'get':
-        this.app.router.get('', `/${this.name}${path}`, ...middleware);
-        break;
-      case 'post':
-        this.app.router.post('', `/${this.name}${path}`, ...middleware);
-        break;
-      case 'put':
-        this.app.router.put('', `/${this.name}${path}`, ...middleware);
-        break;
-      case 'delete':
-        this.app.router.delete('', `/${this.name}${path}`, ...middleware);
-        break;
-      case 'head':
-        this.app.router.head('', `/${this.name}${path}`, ...middleware);
-        break;
-    }
   }
 
   /**
