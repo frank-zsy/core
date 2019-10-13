@@ -1,0 +1,31 @@
+{
+  "name": "@mgrbot/core",
+  "version": "0.0.6",
+  "description": "Core framework of MgrBot",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "egg-bin test"
+  },
+  "author": "Fankzhaopku",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "egg": "^2.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.12",
+    "egg-bin": "^4.14.0",
+    "typescript": "^3.6.4"
+  },
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "index.js",
+    "index.d.ts"
+  ],
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
